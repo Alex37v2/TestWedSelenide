@@ -45,7 +45,7 @@ class CallbackTest {
         assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", text.trim());
     }
 
-    @Test
+        @Test
     void shouldTestV2() {
         driver.get("http://localhost:9999");
         driver.findElement(By.cssSelector("[type=\"text\"]")).sendKeys("Кристина");
