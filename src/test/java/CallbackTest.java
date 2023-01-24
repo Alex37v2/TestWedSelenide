@@ -13,6 +13,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+
 class CallbackTest {
     private WebDriver driver;
 
@@ -47,12 +48,11 @@ class CallbackTest {
     @Test
     void shouldTestV2() {
         driver.get("http://localhost:9999");
-        WebElement form = driver.findElement(By.cssSelector("[data-test-id=callback-form]"));
-        form.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Василий");
-        form.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79270000000");
-        form.findElement(By.cssSelector("[data-test-id=agreement]")).click();
-        form.findElement(By.cssSelector("[data-test-id=submit]")).click();
-        String text = driver.findElement(By.className("alert-success")).getText();
-        assertEquals("Ваша заявка успешно отправлена!", text.trim());
+        driver.findElement(By.cssSelector("[type=\"text\"]")).sendKeys("Кристина");
+        driver.findElement(By.cssSelector("[type=\"tel\"]")).sendKeys("+79147988888");
+        driver.findElement(By.cssSelector(".checkbox__box")).click();
+        driver.findElement(By.cssSelector(".button")).click();
+        String text = driver.findElement(By.className("paragraph")).getText();
+        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", text.trim());
     }
 }
