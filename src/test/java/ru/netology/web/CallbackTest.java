@@ -22,7 +22,6 @@ class CallbackTest {
     @BeforeAll
     static void setUpAll() {
         WebDriverManager.chromedriver().setup();
-        System.setProperty("webdriver.chrome.driver", "driver/win/chromedriver.exe");
     }
 
     @BeforeEach
@@ -44,22 +43,22 @@ class CallbackTest {
     void shouldTestV1() {
         driver.get("http://localhost:9999");
         List<WebElement> elements = driver.findElements(By.className("input__control"));
-        elements.get(0).sendKeys("Кристина");
+        elements.get(0).sendKeys("Кристина Шибаева-Шарикова");
         elements.get(1).sendKeys("+79147988888");
         driver.findElement(By.className("checkbox__box")).click();
-        driver.findElement(By.className("button")).click();
-        String text = driver.findElement(By.className("paragraph")).getText();
+        driver.findElement(By.className("button__content")).click();
+        String text = driver.findElement(By.className("paragraph_theme_alfa-on-white")).getText();
         assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", text.trim());
     }
 
-        @Test
+    @Test
     void shouldTestV2() {
         driver.get("http://localhost:9999");
-        driver.findElement(By.cssSelector("[type=\"text\"]")).sendKeys("Кристина");
-        driver.findElement(By.cssSelector("[type=\"tel\"]")).sendKeys("+79147988888");
-        driver.findElement(By.cssSelector(".checkbox__box")).click();
-        driver.findElement(By.cssSelector(".button")).click();
-        String text = driver.findElement(By.className("paragraph")).getText();
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Кристина Шибаева-Шарикова");
+        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79270000000");
+        driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
+        driver.findElement(By.cssSelector(".button__text")).click();
+        String text = driver.findElement(By.className("paragraph_theme_alfa-on-white")).getText();
         assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", text.trim());
     }
 }
